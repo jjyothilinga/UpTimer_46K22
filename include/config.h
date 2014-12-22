@@ -47,7 +47,7 @@ enum
 *----------------------------------------*/
 #define __DISPLAY_TEST__
 #define MAX_MSG 7
-#define COMMON_CATHODE
+//#define COMMON_CATHODE
 
 
 // Enable for external eeprom access
