@@ -22,11 +22,9 @@
 * File				: rtc_driver.h
 * Created by		: Sam
 * Last changed by	: Sam
-* Last changed		: 11/12/2010
+* Last changed		: 07/07/2010
 *------------------------------------------------------------------------------
 *
-* Revision 1.2 11/12/2010  Sam
-* Demo Release
 * Revision 1.1 07/07/2010 Sam
 * First Release
 * Revision 1.0 03/10/2008 Sam
@@ -137,8 +135,6 @@ extern UINT8 SetHourMode(UINT8 hour, BOOL mode,BOOL amPm);
 extern void ConvertTime24to12Format(DATE_TIME *pstRtcData24,DATE_TIME *pstRtcData12);
 extern void ConvertTime12to24Format(DATE_TIME *pstRtcData12,DATE_TIME *pstRtcData24);
 extern UINT8 ConvertHour12to24Format(UINT8 hour12,UINT8 amPm);
-extern void ReadRtcEEPROM(UINT8 * buff);
-extern void WriteRtcEEPROM(UINT8 *buff);
 #endif
 /*
 *  End of rtc_driver.h

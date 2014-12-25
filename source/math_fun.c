@@ -129,10 +129,12 @@ UINT8 ConvertBCD2HEX(UINT16 bcd)
 *
 *------------------------------------------------------------------------------
 */
-UINT16 BCD2HEX(UINT8 val)
+UINT8 BCD2HEX(UINT8 val)
 {
-   val -= (val/0x10)*0x06;
-   return val;
+    volatile UINT8 result;
+	result = ( (val & 0XF0) >> 4) * 10; 
+	result += (val & 0X0F);
+   	return result;
 }
 
 /*

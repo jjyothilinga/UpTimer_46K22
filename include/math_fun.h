@@ -92,7 +92,7 @@
 */
 
 extern UINT8 ConvertBCD2HEX(UINT16 bcd);
-extern UINT16 BCD2HEX(UINT8 val);
+extern UINT8 BCD2HEX(UINT8 val);
 extern UINT8 HEX2BCD(UINT8 hexIn);
 extern void ConvertAndDisplay16BitValue(UINT16 inValue, UINT8 *pNewVal);
 extern UINT8 BCDtoBin(UINT8 val);

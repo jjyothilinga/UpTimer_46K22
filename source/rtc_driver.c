@@ -18,11 +18,14 @@
 * File				: rtc_driver.c
 * Created by		: Sam
 * Last changed by	: Sam
-* Last changed		: 11/12/2010
+* Last changed		:  17/02/2011
 *------------------------------------------------------------------------------
 *
-* Revision 1.2 11/12/2010  Sam
-* Demo Release
+* Revision 1.2 17/02/2011 Sam
+* Added #ifdef RTC_DS3232 to se External RTC addon Card based on DS3232
+* Added #define RTC_REG_CTR				(0x0E)
+* Added code to "void InitializeRtc(void)" for checking the oscillator running
+* status and to initialise the the oscillator if it is stopped
 * Revision 1.1 07/07/2010 Sam
 * First Release
 * Revision 1.0 03/10/2008 Sam
@@ -40,10 +43,11 @@
 #include "board.h"
 #include "config.h"
 #include "typedefs.h"
-//#include "schedular.h"
 #include "i2c_driver.h"
 #include "rtc_driver.h"
 #include "math_fun.h"
+
+
 
 /*
 *------------------------------------------------------------------------------
@@ -68,9 +72,13 @@
 #define RTC_REG_DATE			(0x04)
 #define RTC_REG_MONT			(0x05)
 #define RTC_REG_YEAR			(0x06)
+#ifdef RTC_DS3232
+//	DS3232 control register
+#define RTC_REG_CTR				(0x0E)
+#else 
+//	DS1307 control register   
 #define RTC_REG_CTR				(0x07)
-#define RTC_EEPROM				(0X08)
-
+#endif
 
 /*
 *------------------------------------------------------------------------------
@@ -88,7 +96,6 @@ UINT8 RegistersRTC[7];  // Buffer for second,minute,.....,year
 BOOL TimeClockUpdateRequired = FALSE;
 DATE_TIME stRtcRegs;
 BOOL TimeClockMode;		//24 hr / 12 hr mode
-
 
 /*
 *------------------------------------------------------------------------------
@@ -174,7 +181,7 @@ const rom INT8* Int2Day(UINT8 day)
 */
 const rom INT8* Int2Month(UINT8 month)
 {
-	return (const rom INT8*)MonthStr[ConvertBCD2HEX(month)-1];
+  	return (const rom INT8*)MonthStr[ConvertBCD2HEX(month)-1];
 }
 
 
@@ -220,7 +227,6 @@ void ReadRtcTimeAndDate(UINT8 * buff)
 *
 *------------------------------------------------------------------------------
 */
-
 void WriteRtcTimeAndDate(UINT8 *buff)
 {
 	StartI2C();
@@ -270,8 +276,6 @@ UINT8 SetHourMode(UINT8 hour, BOOL mode,BOOL amPm)
 	{
 		hour = CLOCK_SET_24HR_MODE(hour);
 	}
-	
-	
 	return hour;
 }
 
@@ -489,6 +493,7 @@ void StoreSystemDate(UINT8 *databuffer)
 */
 void StoreSystemDay(UINT8 day)
 {
+
 	StartI2C();
 	WriteI2C(DEV_ADDR_RTC);
 	WriteI2C(RTC_REG_DAY);
@@ -511,14 +516,30 @@ void StoreSystemDay(UINT8 day)
 void InitializeRtc(void)
 {
 	UINT8 tempVar;
+
+#ifdef RTC_DS3232
+	// Read Oscillator control register
+	tempVar = ReadByteI2C(DEV_ADDR_RTC,RTC_REG_CTR);
+
+	// check if the RTC oscillator run flag is enabled
+	if(tempVar & 0x80)
+	{
+		//Enable oscillator (bit 7=0)
+		WriteByteI2C(DEV_ADDR_RTC,RTC_REG_CTR,0x00);	
+	}
+#else
 	// Read seconds register contents
 	tempVar = ReadByteI2C(DEV_ADDR_RTC,RTC_REG_SEC);
-	// Enable oscillator (bit 7=0)
-	tempVar = tempVar & 0x7F;
-	WriteByteI2C(DEV_ADDR_RTC,RTC_REG_SEC,tempVar);
+	
+	// check if the RTC oscillator run flag is enabled
+	if(tempVar & 0x80)
+	{
+		// Enable oscillator (bit 7=0)
+		tempVar = tempVar & 0x7F;
+		WriteByteI2C(DEV_ADDR_RTC,RTC_REG_SEC,tempVar);
+	}
+#endif
 
-	// set RTC control register to o/p 1Hz sqr wave o/p
-	WriteByteI2C(DEV_ADDR_RTC,RTC_REG_CTR,0x90);
 /*
 	ReadRtcTimeAndDate((UINT8*)&stRtcRegs);
 	stRtcRegs.mSeconds	= 0x00;							// second = 00
@@ -535,7 +556,12 @@ void InitializeRtc(void)
 	stRtcRegs.mMinute  	= 50;							// minute = 29
 	stRtcRegs.mHour  	= 6;
 #endif
-
+	// Setup task to run
+#ifdef TIME_DEBUG
+	SCH_AddTask(UpdateRealTimeClockTask ,0,TASK_10MSEC_PERIOD);
+#else
+//	SCH_AddTask(UpdateRealTimeClockTask ,0,TASK_100MSEC_PERIOD);
+#endif
 }
 
 /*
@@ -582,10 +608,6 @@ void UpdateRealTimeClockTask(void)
 	}
 #endif
 }
-
-
-
-
 
 /*
 *------------------------------------------------------------------------------

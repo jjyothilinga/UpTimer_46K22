@@ -65,6 +65,7 @@ enum
 //#define TIME_DEBUG
 
 //#define RTC_DS1307
+//#define RTC_DS3232
 
 
 /*----------------------------------------

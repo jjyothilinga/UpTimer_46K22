@@ -11,7 +11,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File001]
@@ -24,7 +24,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File002]
@@ -37,7 +37,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File003]
@@ -50,7 +50,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File004]
@@ -63,7 +63,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File005]
@@ -76,7 +76,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File006]
@@ -89,7 +89,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File007]
@@ -102,7 +102,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File008]
@@ -115,7 +115,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File009]
@@ -128,7 +128,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File010]
@@ -141,7 +141,7 @@ LanguageToolLocation=C:\Program Files\Microchip\mplabc18\v3.46\bin\mcc18.exe
 PPAD=$(BINDIR)|output||$(TMPDIR)|obj||$(AINDIR)||$(INCDIR)|include;C:\Program Files\Microchip\mplabc18\v3.46\h||$(LIBDIR)|C:\Program Files\Microchip\mplabc18\v3.46\lib||$(LKRDIR)||
 SOLK=<src>|source\app.c|source\board.c|source\digitdisplay.c|source\heartBeat.c|source\i2c_driver.c|source\interruptvector.c|source\linearkeypad.c|source\main.c|source\math_fun.c|source\rtc_driver.c|source\timer.c||<obj>||<lib>||<lkr>|18f46k22_g.lkr||
 SuiteArgsString=
-ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+ToolArgsString=-O-
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File011]

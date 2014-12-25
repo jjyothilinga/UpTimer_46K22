@@ -57,11 +57,16 @@ APP app = {0};
 void APP_init( void )
 {
 	UINT8 i;
+/*
 	//writeTimeDateBuffer[2] = SetHourMode(0X03,1,1);
 	//Set Date and Time
 
-
-
+	for( i = 0; i < 7; i++ )
+	{
+		app.readTimeDateBuffer[i] = writeTimeDateBuffer[i];
+	}
+	APP_conversion(); // Separate the higher and lower nibble and store it into the display buffer 
+*/
 	app.state = Read_b_eep (EEPROM_STATE_ADDRESS); 
 	Busy_eep();	
 
@@ -108,6 +113,7 @@ void APP_init( void )
 
 void APP_task( void )
 {
+
 	switch ( app.state )	
 	{
 		case RESET_STATE:
@@ -201,33 +207,46 @@ void APP_task( void )
 
 void APP_conversion(void)
 {
-	UINT8 temp = 0, temp1, temp2;
+	volatile UINT8 temp = 0, temp1, temp2;
+	UINT8 i;
 
-	//Store the day
-	temp = app.readTimeDateBuffer[3];
-	temp -= 1;
+	//Store the day & multiply with the hours
+	temp = app.readTimeDateBuffer[3] - 1;
+	temp *= 24;
 
-	//Multiply with max hours
-	if (temp == 1)
-		app.readTimeDateBuffer[2] += 0x24;
-	else if (temp == 2)
-		app.readTimeDateBuffer[2] += 0x48;
-	else if (temp == 3)
-		app.readTimeDateBuffer[2] += 0x72;
-	else if (temp == 4)
-		app.readTimeDateBuffer[2] += 0x96;
+	//Convert BCD2HEX
+	temp1 = ( (app.readTimeDateBuffer[2] & 0XF0) >> 4) * 10; 
+	temp1 += (app.readTimeDateBuffer[2] & 0X0F);
+	temp += temp1;
 
-	if((app.readTimeDateBuffer[2] == 0X99) && (app.readTimeDateBuffer[1] == 0X59) &&
+	//Convert HEX2BCD
+	temp2 = HEX2BCD(temp);
+	
+
+	if((temp == 0X99) && (app.readTimeDateBuffer[1] == 0X59) &&
 		(app.readTimeDateBuffer[0] == 0X59))
-		app.state = HALT_STATE;
+	{
+		//Store current data into EEPROM
+		for( i = 0; i < NO_OF_DIGITS+DUMMY; i++ )
+		{
+			Write_b_eep( EEPROM_RTC_DATA_ADDRESS+i , app.displayBuffer[i] );
+			Busy_eep( );
+		}
+
+		//Change the state
+		Write_b_eep( EEPROM_STATE_ADDRESS , HALT_STATE );
+		Busy_eep( );
+
+		app.state = HALT_STATE;	
+	}
 			
 	app.displayBuffer[0] = (app.readTimeDateBuffer[0] & 0X0F) + '0';        //Seconds LSB
 	app.displayBuffer[1] = ((app.readTimeDateBuffer[0] & 0XF0) >> 4) + '0'; //Seconds MSB
 	app.displayBuffer[2] = (app.readTimeDateBuffer[1] & 0X0F) + '0';        //Minute LSB
 	app.displayBuffer[3] = ((app.readTimeDateBuffer[1] & 0XF0) >> 4) + '0'; //Minute MSB
 
-	app.displayBuffer[4] = (app.readTimeDateBuffer[2] & 0X0F) + '0';		//Hour LSB
-	app.displayBuffer[5] = ((app.readTimeDateBuffer[2] & 0XF0) >> 4) + '0'; //Hour MSB 
+	app.displayBuffer[4] = (temp2 & 0X0F) + '0';		//Hour LSB
+	app.displayBuffer[5] = ((temp2 & 0XF0) >> 4) + '0'; //Hour MSB 
 
 	app.displayBuffer[6] = ' ';
 }
